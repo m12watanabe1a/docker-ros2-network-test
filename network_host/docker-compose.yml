@@ -3,6 +3,7 @@ version: '3'
 services:
   talker:
     image: osrf/ros:foxy-desktop
+    tty: true
     command: ros2 run demo_nodes_cpp talker
     pid: host
     network_mode: host
@@ -10,6 +11,7 @@ services:
       - /dev/shm:/dev/shm
   listener:
     image: osrf/ros:foxy-desktop
+    tty: true
     command: ros2 run demo_nodes_cpp listener
     pid: host
     network_mode: host
