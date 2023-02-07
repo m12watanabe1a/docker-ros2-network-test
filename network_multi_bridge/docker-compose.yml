@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  talker1:
+    image: osrf/ros:${ROS_DISTRO}-desktop
+    tty: true
+    command: ros2 run demo_nodes_cpp talker
+    networks:
+      - rosnet1
+  talker2:
+    image: osrf/ros:${ROS_DISTRO}-desktop
+    tty: true
+    command: ros2 run demo_nodes_cpp talker
+    networks:
+      - rosnet2
+
+  listener:
+    image: osrf/ros:${ROS_DISTRO}-desktop
+    tty: true
+    command: ros2 run demo_nodes_cpp listener
+    networks:
+      - rosnet1
+      - rosnet2
+
+networks:
+  rosnet1:
+    driver: bridge
+  rosnet2:
+    driver: bridge
